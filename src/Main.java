@@ -1,44 +1,61 @@
-import Controller.CalculaMediaController;
-import Model.Aluno;
+import Controller.AlunoController;
+import DataBase.DataBase;
 
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
-
+        DataBase.cadastroInicial();
         Scanner sc = new Scanner(System.in);
         Locale.setDefault(Locale.US);
 
-        Aluno aluno = new Aluno();
-        System.out.println("Informe a primeira nota: ");
-        aluno.setNota1(sc.nextDouble());
-        System.out.println("Informe a segunda nota: ");
-        aluno.setNota2(sc.nextDouble());
+        char sair = 0;
 
-        aluno.setMedia(CalculaMediaController.calculaMedia(aluno.getNota1(),aluno.getNota2()) );
+        do {
 
-        if(aluno.getMedia() >=6) {
-            System.out.println("Aprovado! Sua media foi de:" + aluno.getMedia());
-            System.out.println("Voce  deseja realizar a prova 3? Escreva S para sim ou N para n�o");
-            String desejaFazerN3=sc.next();
-            if(desejaFazerN3.equals("s")) {
-                System.out.println("Informe sua terceira nota: ");
-                aluno.setNota3(sc.nextDouble());
-                CalculaMediaController.atualizaMedia(aluno);
-                System.out.println("Voc� est� aprovado");
+            System.out.println("Insira o codigo da acao desejadada:\n" +
+                    " 1-Cadastrar Aluno" +
+                    "\n 2-Remover Aluno" +
+                    "\n 3-Pesquisar Aluno" +
+                    "\n 4-Inserir notas" +
+                    "\n 5-Relatorio de alunos" +
+                    "\n 6-Informaçoes da disciplina");
+
+            int opcaoCodigo = 0;
+
+            System.out.print("nº: ");
+            opcaoCodigo = sc.nextInt();
+
+            switch (opcaoCodigo) {
+                case 1:
+                    AlunoController.inserirAluno();
+                    break;
+                case 2:
+                    AlunoController.excluirAluno();
+                    break;
+                case 3:
+                    AlunoController.pesquisarAluno();
+                    break;
+                case 4:
+                    AlunoController.inseriNotas();
+                    break;
+                case 5:
+                    AlunoController.relatorioAlunos();
+                    break;
+                case 6:
+                    AlunoController.informacoesDisciplina();
             }
+            System.out.println("Voce deseja sair do sitema?" +
+                    "\nEscreva 's' para sim e 'n' para nao");
+            sair = sc.next().charAt(0);
         }
-        else if(aluno.getMedia() <6){
-            System.out.println("Voce esta em recuperacao.");
-            System.out.println("Portanto, informe sua terceira nota: ");
-            aluno.setNota3(sc.nextDouble());
-            CalculaMediaController.atualizaMedia(aluno);
-        }
+        while (sair != 's');
+
         sc.close();
+
     }
 }
 

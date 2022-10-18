@@ -1,27 +1,34 @@
 package Model;
 
 public class Aluno {
-    private String nome;
-    private double nota1, nota2, nota3;
-    private double media;
-    public static String disciplina= "Geografia";
 
+    private String nome;
+
+    private int matricula;
+
+    private double nota1 = 0, nota2 = 0, nota3 = 0;
+
+    private double media;
+
+    public static String disciplina = "Geografia";
+
+    @Override
+    public String toString() {
+        return "\n==============\nNome: " + this.nome + "\n| Nota1: " + this.nota1 + "\n| Nota2: " + this.nota2 + "\n| Nota3: " + this.nota3 + "\n| Media: " + this.media;
+    }
 
 
     public Aluno() {
-
     }
 
-    public Aluno(String nome, double nota1, double nota2, double nota3, double media) {
-        super();
+    public Aluno(String nome, int matricula, double nota1, double nota2, double nota3, double media) {
         this.nome = nome;
+        this.matricula = matricula;
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
         this.media = media;
-
     }
-
 
     public String getNome() {
         return nome;
@@ -29,6 +36,10 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getMatricula() {
+        return matricula;
     }
 
     public double getNota1() {
@@ -67,7 +78,13 @@ public class Aluno {
         return disciplina;
     }
 
+    public static void setDisciplina(String disciplina) {
+        Aluno.disciplina = disciplina;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
 
 
-
+    }
 }
