@@ -16,7 +16,14 @@ public class Main {
 
         do {
 
-            System.out.println("Insira o codigo da acao desejadada:\n 1-Cadastrar Aluno\n 2-Remover Aluno\n 3-Pesquisar Aluno\n 4-Inserir notas\n 5-Relatorio de alunos\n 6-Informaçoes da disciplina");
+            System.out.println("Insira o codigo da acao desejadada:\n" +
+                    " 1-Cadastrar Aluno" +
+                    "\n 2-Remover Aluno" +
+                    "\n 3-Pesquisar Aluno" +
+                    "\n 4-Inserir notas" +
+                    "\n 5-Relatorio de alunos" +
+                    "\n 6-Informaçoes da disciplina");
+
             int opcaoCodigo = 0;
 
             System.out.print("nº: ");
@@ -31,14 +38,18 @@ public class Main {
                     break;
                 case 3:
                     AlunoController.pesquisarAluno();
+                    break;
                 case 4:
                     AlunoController.inseriNotas();
+                    break;
                 case 5:
                     AlunoController.relatorioAlunos();
+                    break;
                 case 6:
                     AlunoController.informacoesDisciplina();
             }
-            System.out.println("Voce deseja sair do sitema?\nEscreva 's' para sim e 'n' para nao");
+            System.out.println("Voce deseja sair do sitema?" +
+                    "\nEscreva 's' para sim e 'n' para nao");
             sair = sc.next().charAt(0);
         }
         while (sair != 's');

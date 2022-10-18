@@ -45,7 +45,7 @@ public class InserirNotaController {
                     a.setNota3(sc.nextDouble());
                     CalculaMediaController.atualizaMedia(a);
                 }
-                break;
+                return;
             }
         }
     }

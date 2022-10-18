@@ -15,7 +15,7 @@ public class DataBase {
 
     public static void cadastroInicial() {
 
-        nomeAluno.add(new Aluno("Matheus", 12345678, 10, 10, 10, 10));
+        nomeAluno.add(new Aluno("Matheus", 12345678, 1, 10, 0, 0));
 
         nomeAluno.add(new Aluno("Keylla", 87654321, 10, 7, 0, 8.5));
 

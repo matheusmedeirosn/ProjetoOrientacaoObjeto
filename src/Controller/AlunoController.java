@@ -26,11 +26,11 @@ public class AlunoController {
         for (Aluno a : DataBase.nomeAluno) {
             if (matricula == a.getMatricula()) {
                 System.out.println("ERRO: A matricula informada ja existe");
-                break;
+                return;
             } else {
                 DataBase.adicionar(aluno);
                 aluno = new Aluno();
-                break;
+                return;
             }
 
         }
@@ -71,10 +71,10 @@ public class AlunoController {
         for (Aluno aluno : DataBase.nomeAluno) {
             System.out.println(aluno.getMatricula());
             if (aluno.getMatricula() == matricula) {
-                mensagem = "O aluno deletado tem como:" + aluno;
+                mensagem = "O aluno deletado tem como nome:" + aluno.getNome();
                 System.out.println(mensagem);
                 DataBase.nomeAluno.remove(aluno);
-                break;
+                return;
             }
         }
     }
@@ -84,7 +84,7 @@ public class AlunoController {
         for (Aluno aluno : DataBase.nomeAluno) {
             InserirNotaController.validarNotas();
             CalculaMediaController.atualizaMedia(aluno);
-            break;
+            return;
         }
     }
 
@@ -93,12 +93,54 @@ public class AlunoController {
     }
 
     public static void informacoesDisciplina() {
-        System.out.println("Disciplina:" + Aluno.getDisciplina());
-        System.out.println("Total de alunos:" + DataBase.nomeAluno.stream().count());
+        int totalAlunos = DataBase.nomeAluno.size();
+        double soma = 0;
+        Aluno maiorNota1 = DataBase.nomeAluno.get(0);
+        Aluno maiorNota2 = DataBase.nomeAluno.get(0);
+        Aluno maiorNota3 = DataBase.nomeAluno.get(0);
+        Aluno maiorMedia = DataBase.nomeAluno.get(0);
 
-//        CalculaMediaController.mediaGeral();
+        for(Aluno a: DataBase.nomeAluno){
+
+            soma += a.getMedia();
+
+            if(a.getNota1() > maiorNota1.getNota1()){
+                maiorNota1 = a;
+            }
+            if(a.getNota2()> maiorNota2.getNota2()){
+                maiorNota2=a;
+            }
+            if(a.getNota3()>maiorNota3.getNota3()){
+                maiorNota3=a;
+            }
+            if(a.getMedia()>maiorNota3.getNota3()){
+                maiorNota3=a;
+            }
+        }
+
+        double mediaGeral = soma/totalAlunos;
+
+
+        System.out.println("Disciplina:" + Aluno.getDisciplina());
+        System.out.println("Total de alunos:" + totalAlunos);
+        System.out.println("Média Geral: "  + mediaGeral);
+        System.out.println("\n Maior nota 1:");
+        System.out.println(" - Aluno: " + maiorNota1.getNome());
+        System.out.println(" - Nota: " + maiorNota1.getNota1());
+        System.out.println("\n Maior nota 2:");
+        System.out.println(" - Aluno: " + maiorNota2.getNome());
+        System.out.println(" - Nota: " + maiorNota2.getNota2());
+        System.out.println("\n Maior nota 3:");
+        System.out.println(" - Aluno: " + maiorNota3.getNome());
+        System.out.println(" - Nota: " + maiorNota3.getNota3());
+        System.out.println("\n Maior media:");
+        System.out.println(" - Aluno: " + maiorMedia.getNome());
+        System.out.println(" - Nota: " + maiorMedia.getMedia());
+
 
     }
+
+
 }
 
 
